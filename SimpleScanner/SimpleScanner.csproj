@@ -33,4 +33,10 @@
   <ItemGroup>
     <Compile Include="SimpleScanner.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Test.c" />
+  </ItemGroup>
 </Project>
