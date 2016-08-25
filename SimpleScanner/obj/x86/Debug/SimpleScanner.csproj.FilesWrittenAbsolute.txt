@@ -1,0 +1,5 @@
+/home/rodolfo/Documents/CompilerDesign/SimpleScanner/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/rodolfo/Documents/CompilerDesign/SimpleScanner/bin/Debug/SimpleScanner.exe.mdb
+/home/rodolfo/Documents/CompilerDesign/SimpleScanner/bin/Debug/SimpleScanner.exe
+/home/rodolfo/Documents/CompilerDesign/SimpleScanner/obj/x86/Debug/SimpleScanner.exe
+/home/rodolfo/Documents/CompilerDesign/SimpleScanner/obj/x86/Debug/SimpleScanner.exe.mdb
