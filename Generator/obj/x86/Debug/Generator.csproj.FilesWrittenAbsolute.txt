@@ -1,0 +1,5 @@
+/home/rodolfo/Documents/CompilerDesign/Generator/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/rodolfo/Documents/CompilerDesign/Generator/bin/Debug/Generator.exe.mdb
+/home/rodolfo/Documents/CompilerDesign/Generator/bin/Debug/Generator.exe
+/home/rodolfo/Documents/CompilerDesign/Generator/obj/x86/Debug/Generator.exe
+/home/rodolfo/Documents/CompilerDesign/Generator/obj/x86/Debug/Generator.exe.mdb
