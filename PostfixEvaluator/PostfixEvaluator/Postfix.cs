@@ -16,7 +16,7 @@ namespace PostfixEvaluator
 
 	public class Token
 	{
-		public string Lexeme { get; }
+		public String Lexeme { get; }
 
 		public TokenCategory Category { get; }
 
@@ -73,14 +73,61 @@ namespace PostfixEvaluator
 
 	public class Driver
 	{
+
+
 		public static void Main ()
 		{
 			Console.Write ("Input prefix expression: ");
 			var line = Console.ReadLine ();
 
+
+			var s = new Stack<double> ();
+
 			foreach (Token t in new Scanner (line).Start ()) {
-				Console.WriteLine (t);
+				double x = 0;
+				double y = 0;
+				try{
+					switch (t.Category) {
+
+					case TokenCategory.NUMBER:
+						s.Push (Convert.ToDouble (t.Lexeme));
+						break;
+					case TokenCategory.ADD:
+						x = s.Pop ();
+						y = s.Pop ();
+						s.Push (y + x);
+						break;
+					case TokenCategory.SUB:
+						x = s.Pop ();
+						y = s.Pop ();
+						s.Push (y - x);
+						break;
+					case TokenCategory.MUL:
+						x = s.Pop ();
+						y = s.Pop ();
+						s.Push (y * x);
+						break;
+					case TokenCategory.DIV:
+						x = s.Pop ();
+						y = s.Pop ();
+						s.Push (y / x);
+						break;
+
+					}	
+					}catch(InvalidOperationException){
+						Console.Write ("The operation is incorrect");
+						return;
+					}
+
 			}
+			if (s.Count > 1 || s.Count == 0) {
+				Console.Write ("The operation is incorrect");
+				return;
+			}
+
+			var result = s.Pop ();
+			Console.Write (result);
 		}
+
 	}
 }
