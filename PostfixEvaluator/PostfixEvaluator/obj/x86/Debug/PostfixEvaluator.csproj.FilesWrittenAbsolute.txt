@@ -1,0 +1,5 @@
+/home/rodolfo/Documents/CompilerDesign/PostfixEvaluator/PostfixEvaluator/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/rodolfo/Documents/CompilerDesign/PostfixEvaluator/PostfixEvaluator/bin/Debug/PostfixEvaluator.exe.mdb
+/home/rodolfo/Documents/CompilerDesign/PostfixEvaluator/PostfixEvaluator/bin/Debug/PostfixEvaluator.exe
+/home/rodolfo/Documents/CompilerDesign/PostfixEvaluator/PostfixEvaluator/obj/x86/Debug/PostfixEvaluator.exe
+/home/rodolfo/Documents/CompilerDesign/PostfixEvaluator/PostfixEvaluator/obj/x86/Debug/PostfixEvaluator.exe.mdb
