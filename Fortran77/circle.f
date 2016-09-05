@@ -8,7 +8,12 @@
       write (*, *) 'Give radius r:'
       read  (*, *) r
       area = pi * r * r
-      write (*, *) 'Area =', area
+      if (area .lt. 40) then
+        write (*, *) 'Area =', area
+      else
+        write (*,*) 'Incorrect answer =',r,pi
+      endif
+
 
       stop
       end
