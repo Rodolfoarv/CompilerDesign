@@ -2,8 +2,21 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="SimpleScanner.cs">
     <Files>
-      <File FileName="SimpleScanner.cs" Line="7" Column="2" />
+      <File FileName="SimpleScanner.cs" Line="15" Column="4" />
+      <File FileName="Test.c" Line="18" Column="3" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="SimpleScanner" expanded="True">
+            <Node name="SimpleScanner" expanded="True">
+              <Node name="References" expanded="True" />
+              <Node name="SimpleScanner.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
