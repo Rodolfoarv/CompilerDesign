@@ -10,21 +10,26 @@ public class Solution
 	}
 
 	public static void Main(){
-		string pattern = @"([a-zA-Z]+) (\d+)";
-		Match result = Regex.Match("June 24", pattern);
+		string pattern = @"([a-zA-z]+) (\d+)";
+		MatchCollection matches = Regex.Matches ("June 24, August 9, Dec 12", pattern);
 
+		Console.WriteLine ("{0} matches", matches.Count);
 
-		if (result.Success) {
-			Console.WriteLine("Match at index [{0}, {1})", 
-				result.Index,
-				result.Index + result.Length);
+		foreach (Match match in matches) {
+			Console.WriteLine ("Match {0} at index [{1}, {2}]", 
+				match.Value,
+				match.Index,
+				match.Index + match.Length);
+		}
 
-			Console.WriteLine("Match: {0}", result.Value);
+		foreach (Match match in matches) {
+			GroupCollection data = match.Groups;
+			Console.WriteLine("{0} groups captured in {1}", data.Count, match.Value);
+			Console.WriteLine("Month: " + data[1] + ", Day: " + data[2]);
+			Console.WriteLine("Month found at[{0}, {1})", 
+				data[1].Index, 
+				data[1].Index + data[1].Length);
 
-			while (result.Success) {
-				Console.WriteLine("Match: {0}", result.Value);
-				result = result.NextMatch();
-			}
 		}
 	}
 }
