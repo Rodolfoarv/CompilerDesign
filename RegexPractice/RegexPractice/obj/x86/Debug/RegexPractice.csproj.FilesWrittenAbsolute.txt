@@ -1,0 +1,5 @@
+/home/rodolfo/Documents/CompilerDesign/RegexPractice/RegexPractice/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/rodolfo/Documents/CompilerDesign/RegexPractice/RegexPractice/bin/Debug/RegexPractice.exe.mdb
+/home/rodolfo/Documents/CompilerDesign/RegexPractice/RegexPractice/bin/Debug/RegexPractice.exe
+/home/rodolfo/Documents/CompilerDesign/RegexPractice/RegexPractice/obj/x86/Debug/RegexPractice.exe
+/home/rodolfo/Documents/CompilerDesign/RegexPractice/RegexPractice/obj/x86/Debug/RegexPractice.exe.mdb
