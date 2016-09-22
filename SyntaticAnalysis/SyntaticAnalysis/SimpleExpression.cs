@@ -81,7 +81,17 @@ public class Parser {
 		}
 	}
 
+	public void Term (){
+		Factor ();
+		while (Current == TokenCategory.TIMES) {
+			Expect (TokenCategory.TIMES);
+			Factor ();
+		}
+	}
 
+	public void Factor () {
+		
+	}
 }
 
 public class SimpleExpression {
