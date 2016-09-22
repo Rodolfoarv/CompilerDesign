@@ -67,13 +67,13 @@ public class Parser {
 			throw new SyntaxError();  
 		}
 	}
-	public void Prog(){
+	public int Prog(){
 		Exp ();
 		Expect (TokenCategory.EOF);
 
 	}
 
-	public void Exp(){
+	public int Exp(){
 		Term ();
 		while (Current == TokenCategory.PLUS) {
 			Expect (TokenCategory.PLUS);
@@ -81,7 +81,7 @@ public class Parser {
 		}
 	}
 
-	public void Term (){
+	public int Term (){
 		Factor ();
 		while (Current == TokenCategory.TIMES) {
 			Expect (TokenCategory.TIMES);
@@ -89,14 +89,15 @@ public class Parser {
 		}
 	}
 
-	public void Factor () {
+	public int Factor () {
 		if (Current == TokenCategory.INT) {
-			Expect (TokenCategory.INT);
+			var t = Expect (TokenCategory.INT);
+			Convert.ToInt32 (t.Lexeme);
 		} else {
 			Expect (TokenCategory.PAR_OPEN);
-			Exp ();
+			var x = Exp ();
 			Expect (TokenCategory.PAR_CLOSE);
-
+			return x;
 		}
 	}
 }
