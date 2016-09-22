@@ -105,7 +105,12 @@ public class SimpleExpression {
 	public static void Main() {
 		var line = Console.ReadLine();
 		var parser = new Parser(new Scanner(line).Start().GetEnumerator()); // What is the TokenStream consuming the Tokens.
+		try {
 		parser.Prog ();
 		Console.WriteLine ("Syntax OK");
+
+		}catch (SyntaxError e) {
+			Console.WriteLine (e.Message);
+		}
 	}
 }
