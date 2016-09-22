@@ -68,31 +68,34 @@ public class Parser {
 		}
 	}
 	public int Prog(){
-		Exp ();
+		var x = Exp ();
 		Expect (TokenCategory.EOF);
-
+		return x;
 	}
 
 	public int Exp(){
-		Term ();
+		var x = Term ();
 		while (Current == TokenCategory.PLUS) {
 			Expect (TokenCategory.PLUS);
-			Term ();
+			x += Term ();
 		}
+		return x;
 	}
 
 	public int Term (){
-		Factor ();
+		var x = Factor ();
 		while (Current == TokenCategory.TIMES) {
 			Expect (TokenCategory.TIMES);
-			Factor ();
+			x *= Factor ();
 		}
+		return x;
 	}
 
 	public int Factor () {
 		if (Current == TokenCategory.INT) {
 			var t = Expect (TokenCategory.INT);
-			Convert.ToInt32 (t.Lexeme);
+			var x = Convert.ToInt32 (t.Lexeme);
+			return x;
 		} else {
 			Expect (TokenCategory.PAR_OPEN);
 			var x = Exp ();
@@ -107,8 +110,8 @@ public class SimpleExpression {
 		var line = Console.ReadLine();
 		var parser = new Parser(new Scanner(line).Start().GetEnumerator()); // What is the TokenStream consuming the Tokens.
 		try {
-		parser.Prog ();
-		Console.WriteLine ("Syntax OK");
+			var x = parser.Prog ();
+			Console.WriteLine (x);
 
 		}catch (SyntaxError e) {
 			Console.WriteLine (e.Message);
