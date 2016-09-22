@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 public enum TokenCategory {
-	PLUS, TIMES, PAR_OPEN, PAR_CLOSE, INT, EOF, ILLEGAL
+	PLUS, TIMES, PAR_OPEN, PAR_CLOSE, INT,POW, EOF, ILLEGAL
 }
 
 public class Token {
@@ -20,7 +20,7 @@ public class Token {
 
 public class Scanner {
 	readonly String input;
-	static readonly Regex regex = new Regex(@"([+])|([*])|([(])|([)])|(\d+)|(\s)|(.)");
+	static readonly Regex regex = new Regex(@"([+])|([*])|([(])|([)])|(\d+)|(\s)|([\^])|(.)");
 	public Scanner(String input) {
 		this.input = input;
 	}
@@ -39,8 +39,10 @@ public class Scanner {
 			} else if (m.Groups[6].Length > 0) {
 				continue;
 			} else if (m.Groups[7].Length > 0) {
+				yield return new Token(TokenCategory.POW, m.Value);
+			}else if (m.Groups[8].Length > 0) {
 				yield return new Token(TokenCategory.ILLEGAL, m.Value);
-			}           
+			}            
 		}
 		yield return new Token(TokenCategory.EOF, "");
 	}
@@ -83,10 +85,28 @@ public class Parser {
 	}
 
 	public int Term (){
-		var x = Factor ();
+		var x = Other ();
 		while (Current == TokenCategory.TIMES) {
 			Expect (TokenCategory.TIMES);
-			x *= Factor ();
+			x *= Other ();
+		}
+		return x;
+	}
+
+	public static int pow (int x, int y) {
+		var r = 1;
+		for (var i = 1; i < y; i++) {
+			r *= x;
+
+		}
+		return r;
+	}
+
+	public int Other (){
+		var x = Factor ();
+		if (Current == TokenCategory.POW) {
+			Expect (TokenCategory.POW);
+			x = pow(x, Other ());
 		}
 		return x;
 	}
