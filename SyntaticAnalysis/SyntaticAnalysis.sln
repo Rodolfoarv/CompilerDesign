@@ -1,0 +1,17 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyntaticAnalysis", "SyntaticAnalysis\SyntaticAnalysis.csproj", "{212D17F9-FD19-4380-BEB1-64C7E9E2FA38}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{212D17F9-FD19-4380-BEB1-64C7E9E2FA38}.Debug|x86.ActiveCfg = Debug|x86
+		{212D17F9-FD19-4380-BEB1-64C7E9E2FA38}.Debug|x86.Build.0 = Debug|x86
+		{212D17F9-FD19-4380-BEB1-64C7E9E2FA38}.Release|x86.ActiveCfg = Release|x86
+		{212D17F9-FD19-4380-BEB1-64C7E9E2FA38}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+EndGlobal
