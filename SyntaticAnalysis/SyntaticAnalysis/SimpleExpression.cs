@@ -90,13 +90,22 @@ public class Parser {
 	}
 
 	public void Factor () {
-		
+		if (Current == TokenCategory.INT) {
+			Expect (TokenCategory.INT);
+		} else {
+			Expect (TokenCategory.PAR_OPEN);
+			Exp ();
+			Expect (TokenCategory.PAR_CLOSE);
+
+		}
 	}
 }
 
 public class SimpleExpression {
 	public static void Main() {
 		var line = Console.ReadLine();
-		var parser = new Parser(new Scanner(line).Start().GetEnumerator());
+		var parser = new Parser(new Scanner(line).Start().GetEnumerator()); // What is the TokenStream consuming the Tokens.
+		parser.Prog ();
+		Console.WriteLine ("Syntax OK");
 	}
 }
