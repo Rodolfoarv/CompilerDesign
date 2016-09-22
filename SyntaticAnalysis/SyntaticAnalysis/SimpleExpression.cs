@@ -67,6 +67,21 @@ public class Parser {
 			throw new SyntaxError();  
 		}
 	}
+	public void Prog(){
+		Exp ();
+		Expect (TokenCategory.EOF);
+
+	}
+
+	public void Exp(){
+		Term ();
+		while (Current == TokenCategory.PLUS) {
+			Expect (TokenCategory.PLUS);
+			Term ();
+		}
+	}
+
+
 }
 
 public class SimpleExpression {
