@@ -1774,8 +1774,17 @@ void yyfree (void * ptr )
 
 
 int main(int, char**) {
-	// lex through the input:
-  cout << "Number of lines: " << lines << endl;
-	yylex();
+    // open a file handle to a particular file:
+    FILE *myfile = fopen("a.snazzle.file", "r");
+    // make sure it's valid:
+    if (!myfile){
+      cout << "Unable to open a.snazzle.file " << endl;
+      return -1;
+    }
+    // set lex to read from it instead of defaulting to STDIN;
+    yyin = myfile;
+
+    //lex through the input:
+    yylex();
 }
 
