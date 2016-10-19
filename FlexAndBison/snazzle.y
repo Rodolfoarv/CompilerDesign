@@ -30,12 +30,12 @@ void yyerror(const char *s);
 
 %%
 snazzle:
-        INT snazzle       {cout << "bison found an int" << $1 << endl; }
-        | FLOAT snazzle   {cout << "bison found a float" << $1 << endl; }
-        | STRING snazzle  {cout << "bison found a string" << $1 << endl; }
-        | INT             {cout << "bison found an int" << $1 << endl; }
-        | FLOAT           {cout << "bison found an float" << $1 << endl; }
-        | STRING          {cout << "bison found an string" << $1 << endl; }
+        INT snazzle       {cout << "bison found an int1: " << $1 << endl; }
+        | FLOAT snazzle   {cout << "bison found a float1: " << $1 << endl; }
+        | STRING snazzle  {cout << "bison found a string1: " << $1 << endl; }
+        | INT             {cout << "bison found an int: " << $1 << endl; }
+        | FLOAT           {cout << "bison found an float: " << $1 << endl; }
+        | STRING          {cout << "bison found an string: " << $1 << endl; }
 %%
 
 int main(int, char**) {
