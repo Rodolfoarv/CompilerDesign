@@ -2,8 +2,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="SimpleScanner.cs">
     <Files>
-      <File FileName="SimpleScanner.cs" Line="15" Column="4" />
-      <File FileName="Test.c" Line="18" Column="3" />
+      <File FileName="SimpleScanner.cs" Line="20" Column="2" />
+      <File FileName="Test.c" Line="8" Column="19" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
