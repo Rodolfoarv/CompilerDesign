@@ -34,18 +34,42 @@ void yyerror(const char *s);
 %token <sval> STRING
 
 %%
+// the first rule defined is the highest-level rule, which in our
+// case is just the concept of a whole "snazzle file":
 snazzle:
-        snazzle INT       {cout << "bison found an int1: " << $2 << endl; }
-        | snazzle FLOAT   {cout << "bison found a float1: " << $2 << endl; }
-        | snazzle STRING  {cout << "bison found a string1: " << $2 << endl; }
-        | INT             {cout << "bison found an int: " << $1 << endl; }
-        | FLOAT           {cout << "bison found an float: " << $1 << endl; }
-        | STRING          {cout << "bison found an string: " << $1 << endl; }
+      header template body_section footer { cout << "done with a snazzle file!" << endl; }
+      ;
+header:
+      SNAZZLE FLOAT { cout << "reading a snazzle file version " << $2 << endl; }
+      ;
+template:
+      typelines
+      ;
+typelines:
+      typelines typeline
+      | typeline
+      ;
+typeline:
+      TYPE STRING { cout << "new defined snazzle type: " << $2 << endl; }
+      ;
+body_section:
+      body_lines
+      ;
+body_lines:
+      body_lines body_line
+      | body_line
+      ;
+body_line:
+      INT INT INT INT STRING { cout << "new snazzle: " << $1 << $2 << $3 << $4 << $5 << endl; }
+      ;
+footer:
+      END
+;
 %%
 
 int main(int, char**) {
 	// open a file handle to a particular file:
-	FILE *myfile = fopen("a.snazzle.file", "r");
+	FILE *myfile = fopen("in.snazzle", "r");
 	// make sure it is valid:
 	if (!myfile) {
 		cout << "I can't open a.snazzle.file!" << endl;
