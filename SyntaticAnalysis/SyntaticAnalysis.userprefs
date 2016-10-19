@@ -1,0 +1,12 @@
+﻿<Properties StartupItem="SyntaticAnalysis/SyntaticAnalysis.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="SyntaticAnalysis/SimpleExpression.cs">
+    <Files>
+      <File FileName="SyntaticAnalysis/SimpleExpression.cs" Line="113" Column="26" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
