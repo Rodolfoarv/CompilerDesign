@@ -1,0 +1,4 @@
+lex.yy.c
+snazzle
+*.c
+*.h
