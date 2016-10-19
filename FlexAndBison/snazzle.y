@@ -22,6 +22,11 @@ void yyerror(const char *s);
   char *sval;
 }
 
+// define the cosntant string tokens
+
+%token SNAZZLE TYPE
+%token END
+
 // define the "terminal symbol" token types I'm going to use (in CAPS
 // by convention), and associate each with a field of the union:
 %token <ival> INT
