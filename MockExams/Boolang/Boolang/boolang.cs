@@ -66,28 +66,182 @@ namespace Boolang
     }
 
     //---------------------------------------------------------------
+
+    //---------------------------------------------------------------
+    class Node: IEnumerable<Node> {
+      IList<Node> children = new List<Node>();
+      public Node this[int index] {
+        get {
+          return children[index];
+        }
+      }
+      public void Add(Node node) {
+        children.Add(node);
+      }
+      public IEnumerator<Node> GetEnumerator() {
+        return children.GetEnumerator();
+      }
+      System.Collections.IEnumerator
+      System.Collections.IEnumerable.GetEnumerator() {
+        throw new NotImplementedException();
+      }
+      public override string ToString() {
+        return GetType().Name;                                 
+      }
+      public string ToStringTree() {
+        var sb = new StringBuilder();
+        TreeTraversal(this, "", sb);
+        return sb.ToString();
+      }
+      static void TreeTraversal(
+        Node node, 
+        string indent, 
+        StringBuilder sb) {
+        sb.Append(indent);
+        sb.Append(node);
+        sb.Append('\n');
+        foreach (var child in node.children) {
+          TreeTraversal(child, indent + "  ", sb);
+        }
+      }
+    }
+    //---------------------------------------------------------------
+
+    class Program:        Node{};
+    class And:            Node{};
+    class Or:             Node{};
+    class Not:            Node{};
+    class Literal_0:      Node{};
+    class Literal_1:      Node{};
+
+    //---------------------------------------------------------------
+
+    class Parser {
+      IEnumerator<Token> tokenStream;
+      public Parser(IEnumerator<Token> tokenStream) {
+        this.tokenStream = tokenStream;
+        this.tokenStream.MoveNext();
+      }
+      public Token CurrentToken {
+        get { return tokenStream.Current; }
+      }
+      public Token Expect(Token category) {
+        if (CurrentToken == category) {
+          Token current = tokenStream.Current;
+          tokenStream.MoveNext();
+          return current;
+        } else {
+          throw new SyntaxError();                
+        }
+      }
+
+      public Node Start(){
+        var e = new Program () { Exp () };
+        Expect(Token.EOF);
+        return e;
+      }
+
+      public Node Exp(){
+        var exp1 = AndExp ();
+        while (CurrentToken == Token.OR) {
+          Expect (Token.OR);
+          var exp2 = new Or () { exp1, AndExp () };
+          exp1 = exp2;
+        }
+        return exp1;
+      }
+
+      public Node AndExp() {
+        var exp1 = SimpleExpression ();
+        while (CurrentToken == Token.AND) {
+          Expect (Token.AND);
+          var exp2 = new And () { exp1, SimpleExpression () };
+          exp1 = exp2;
+        }
+        return exp1;
+      }
+
+      public Node SimpleExpression() {
+        switch (CurrentToken) {
+
+        case Token.PAR_LEFT:
+          Expect (Token.PAR_LEFT);
+          var exp = Exp ();
+          Expect (Token.PAR_RIGHT);
+          return exp;
+         
+        case Token.NOT:
+          Expect (Token.NOT);
+          return new Not () { SimpleExpression () };
+        case Token.ONE:
+          Expect (Token.ONE);
+          return new Literal_1();
+        case Token.ZERO:
+          Expect (Token.ZERO);
+          return new Literal_0();
+        default:
+          throw new SyntaxError ();
+        }
+        
+      }
+    }
+
+    class CILGenerator {
+      public string Visit(Program node) {
+        return ".assembly 'boolang' {}\n\n"
+          + ".class public 'FinalExam' extends ['mscorlib']'System'.'Object' {\n"
+          + "\t.method public static void 'start'() {\n"
+          + "\t\t.entrypoint\n"
+          + Visit((dynamic) node[0])
+          + "\t\tcall void ['mscorlib']'System'.'Console'::'WriteLine'(int32)\n"
+          + "\t\tret\n"
+          + "\t}\n"
+          + "}\n";
+      }
+
+      public string Visit(And node) {
+        return Visit((dynamic) node[0])
+          + Visit((dynamic) node[1])
+          + "\t\tand\n";
+      }
+
+      public string Visit(Or node){
+        return Visit((dynamic) node[0])
+          + Visit((dynamic) node[1])
+          + "\t\tor\n";
+      }
+
+      public string Visit(Not node) {
+        return Visit((dynamic) node[0]) 
+          + "\t\tldc.i4.1\n"
+          + "\t\txor\n"; 
+      }
+
+      public string Visit(Literal_0 node){
+        return "\t\tldc.i4.0\n";
+      }
+
+      public string Visit(Literal_1 node){
+        return "\t\tldc.i4.1\n";
+      }
+    }
+
     class Driver {
       public static void Main(string[] args) {
         try {
-          var inputPath = args[0];
-          var input = File.ReadAllText(inputPath);
-
-          Console.WriteLine(String.Format(
-            "===== Tokens from: \"{0}\" =====", inputPath)
-          );
-          var count = 1;
-          foreach (var tok in new Scanner(input).Start()) {
-            Console.WriteLine(String.Format("[{0}] {1}",
-              count++, tok)
-            );
-          }
-
-        } catch (FileNotFoundException e) {
-          Console.Error.WriteLine(e.Message);
+          var p = new Parser(
+            new Scanner(args[0]).Start().GetEnumerator());                
+          var ast = p.Start();
+          Console.Write(ast.ToStringTree());
+          File.WriteAllText(
+            "output.il", 
+            new CILGenerator().Visit((dynamic) ast));
+        } catch (SyntaxError) {
+          Console.Error.WriteLine("parse error");
           Environment.Exit(1);
         }
       }
-    } 
+    }
 
 
       
