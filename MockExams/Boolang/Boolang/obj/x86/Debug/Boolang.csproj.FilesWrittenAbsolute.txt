@@ -1,0 +1,5 @@
+/home/rodolfo/Documents/CompilerDesign/MockExams/Boolang/Boolang/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/rodolfo/Documents/CompilerDesign/MockExams/Boolang/Boolang/bin/Debug/Boolang.exe.mdb
+/home/rodolfo/Documents/CompilerDesign/MockExams/Boolang/Boolang/bin/Debug/Boolang.exe
+/home/rodolfo/Documents/CompilerDesign/MockExams/Boolang/Boolang/obj/x86/Debug/Boolang.exe
+/home/rodolfo/Documents/CompilerDesign/MockExams/Boolang/Boolang/obj/x86/Debug/Boolang.exe.mdb
